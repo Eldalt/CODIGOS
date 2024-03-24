@@ -1,33 +1,59 @@
-#include "complex.h"
+#include "swap.h"
 #include <stdio.h>
-int main()
-{    
-	complejo a ,b ,result;
-	printf("BIENVENIDOS A LA CALCULADORA DE NUMEROS COMPLEJOS\n");
-	printf("\n \n");
-	printf("ingresar parte real del primer numero complejo\t");
-	scanf("%f",&a.rr);
-	printf("ingresar parte imaginaria  del primer numero complejo\t");
-	scanf("%f",&a.im);
-	printf("El numero complejo que ingresaste es [%f+j%f]",a.rr,a.im);
-	printf("\n \n");
-	printf("\n INGRESAR EL SEGUNDO NUMERO COMPLEJO\n");
-	printf("\n \n");
-	printf("ingresar parte real del segundo numero complejo\t");
-	scanf("%f",&b.rr);
-	printf("ingresar parte imaginaria del segundo numero complejo\t");
-	scanf("%f",&b.im);
-	printf("El numero complejo que ingresaste es [%f+j%f]",b.rr,b.im);
-	suma(a,b,&result);
-	printf("\n la suma de los complejos ==> [%f+j%f]\n",result.rr,result.im);
-	resta(a,b,&result);
-	printf("\n --------------------\n");
-	printf("\n la resta de los complejos ==> [%f+j%f]\n",result.rr,result.im);
-	result=multiplicacion(a,b);
-	printf("la multiplicacion de los complejos esta quedando ====>[%f+j%f]",result.rr,result.im);
-	printf("\n \n");
-	printf("\n El conjugado del numero complejo esta quedando \n");
-	result=conjugado(a);
-	printf("[%f+j%f]",result.rr,result.im);
+#include <stdlib.h> 
+
+int main(int argc, char *argv[])
+{
+	printf("\n INTERCAMBIO DE VECTORES \n");
+	struct v x;
+	int i;
 	
+	printf("Ingrese los elementos del primer vector:\n");
+	for (i = 0; i < 5; i++) {
+		scanf("%d", &x.z1[i]);
+	}
+	
+	printf("Ingrese los elementos del segundo vector:\n");
+	for (i = 0; i < 5; i++) {
+		scanf("%d", &x.z2[i]);
+	}
+	
+	printf("PRIMER VECTOR = ");
+	for (i = 0; i < 5; i++) {
+		printf("%d, ", x.z1[i]);
+	}
+	printf("\n");
+	
+	printf("SEGUNDO VECTOR = ");
+	for (i = 0; i < 5; i++) {
+		printf("%d, ", x.z2[i]);
+	}
+	printf("\n");
+	
+	intercambio(&x);//pongo & por es un puntero para acceder a la direccion de memoria 
+	
+	printf("Después del intercambio:\n");
+	printf("PRIMER VECTOR = ");
+	for (i = 0; i < 5; i++) {
+		printf("%d, ", x.z1[i]);
+	}
+	printf("\n");
+	
+	printf("SEGUNDO VECTOR = ");
+	for (i = 0; i < 5; i++) {
+		printf("%d, ", x.z2[i]);
+	}
+	printf("\n");
+	
+	return 0;
 }
+
+void intercambio(struct v *a) {
+	int i, aux;
+	for (i = 0; i < 5; i++) {
+		aux = a->z1[i];
+		a->z1[i] = a->z2[i];
+		a->z2[i] = aux;
+	}
+}
+
